@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\Programing_language;
+use App\Enums\Languages;
 use Illuminate\Database\Eloquent\Model;
 
 class ProblemTranslation extends Model
@@ -13,7 +13,7 @@ class ProblemTranslation extends Model
         'erro',
         'description',
     ];//fields of migrates
-    protected $casts = ['language' => Programing_language::class];//fields of enums Languages speak.
+    protected $casts = ['language' => Languages::class];//fields of enums Languages speak.
 
     public function problem(){
         return $this->belongsTo(Problem::class);

@@ -16,7 +16,8 @@ class ProblemController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $problems = Problem::all();
+        return view('home', ['problems' => $problems]);
     }
 
     /**

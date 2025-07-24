@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\ProblemController;
 use Illuminate\Support\Facades\Route;
+
 //route for page home.
 Route::get('/home', 
 [ProblemController::class, 'index'])->name('home');
 
+//route group for all my routes of problem
+Route::group(['prefix', 'problem'], function(){
 //route for page create code.
 Route::get('/problem',
 [ProblemController::class, 'create'])->name('problem');
@@ -15,7 +18,13 @@ Route::post('/store/problem',
 [ProblemController::class, 'store'])->name('store.problem');
 
 //is route to show datas from a problem who you seek
-Route::get('/show',
+Route::get('/show/{id}',
 [ProblemController::class, 'show'])->name('show.problem');
 
-//route for edit a problem the seek.
+Route::get('/edit/{id}',
+[ProblemController::class, 'edit'])->name('edit.problem');
+
+Route::put('/update/{id}',
+[ProblemController::class, 'update'])->name('update.problem');
+
+})->name('app.problems');
