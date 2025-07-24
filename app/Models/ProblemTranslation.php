@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Enums\Languages;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProblemTranslation extends Model
 {
+     use HasFactory;
     protected $fillable = [
         'problem_id',
         'language',

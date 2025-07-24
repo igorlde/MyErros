@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Problem;
+use App\Models\ProblemTranslation;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,13 +16,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
      
-          Problem::factory(3)->create();
+         Problem::factory(1)->create();
+         ProblemTranslation::factory(1)->create();
         // User::factory(10)->create();
 
         // User::factory()->create([
         //     'name' => 'igor',
         //     'email' => 'admin@admin.com',
         // ]);
-            //$this->call(UserSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

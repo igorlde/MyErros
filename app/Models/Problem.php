@@ -19,4 +19,8 @@ class Problem extends Model
     public function translati($language){
         return $this->translation()->where('language', $language)->first();
     }
+    
+    public function solution(){
+        return $this->hasMany(SendSolutions::class);
+    }
 }

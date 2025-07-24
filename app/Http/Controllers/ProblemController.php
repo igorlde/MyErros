@@ -86,7 +86,17 @@ class ProblemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validation = $request->validate([
+             'code' => 'required|string|max:255',
+            'language' => ['required', new Enum(Programing_language::class)],
+            'translations' => 'required:array',
+             'translations.*language' => ['required', new Enum(Languages::class)], 
+            'translations.*.erro' => 'required|string',
+            'translations.*.description' => 'required|string'
+        ]);
+        $problem = Problem::findOrFail($id);
+        $problem->update($validation);
+        return redirect()->route('home')->with('success', 'Update datas you problem with success');
     }
 
     /**
@@ -95,6 +105,6 @@ class ProblemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
     }
 }

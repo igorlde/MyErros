@@ -18,8 +18,8 @@ class ProblemFactory extends Factory
     public function definition(): array
     {
         return [
-            'code' => fake()->paragraph(3),
-            'language' => Programing_language::ASSEMBLY,
+            'code' => 'System.out.priaaas()',
+            'language' => Programing_language::JAVA,
         ];
     }
 }
