@@ -4,7 +4,7 @@ use App\Http\Controllers\ProblemController;
 use Illuminate\Support\Facades\Route;
 
 //route for page home.
-Route::get('/home', 
+Route::get('/', 
 [ProblemController::class, 'index'])->name('home');
 
 //route group for all my routes of problem

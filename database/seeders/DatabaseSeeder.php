@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
     {
      
          Problem::factory(1)->create();
-         ProblemTranslation::factory(1)->create();
         // User::factory(10)->create();
 
         // User::factory()->create([

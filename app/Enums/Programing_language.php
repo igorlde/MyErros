@@ -9,7 +9,7 @@ enum Programing_language:string
     //'spring boot', 'c', 'pascal','assembly', 'javascript', 'typescript', 'outros'
     
             
-    case Cpp = 'c++';
+    case CPP = 'c++';
     case JAVA = 'java';
     case PHP = 'php';
     case GO = 'go';
@@ -21,11 +21,11 @@ enum Programing_language:string
     case ASSEMBLY = 'assembly';
     case JAVA_SCRIPT = 'javascript';
     case TYPE_SCRIPT = 'typescript';
-    case OUTROS = 'outros';
+    case OTHERS = 'outros';
     
     public function label():string{
         return match($this){
-            self::Cpp => 'c++',
+            self::CPP => 'c++',
             self::JAVA => 'java',
             self::PHP => 'php',
             self::GO => 'go',
@@ -37,7 +37,7 @@ enum Programing_language:string
             self::ASSEMBLY => 'assembly',
             self::JAVA_SCRIPT => 'javascript',
             self::TYPE_SCRIPT => 'typescript',
-            self::OUTROS => 'outros',
+            self::OTHERS=> 'outros',
         };
     }
 }

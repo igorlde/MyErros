@@ -39,8 +39,6 @@ class ProblemController extends Controller
         $validation = $request->validate([
             'code' => 'required|string|max:255',
             'language' => ['required', new Enum(Programing_language::class)],
-            'translations' => 'required:array',
-             'translations.*language' => ['required', new Enum(Languages::class)], 
             'translations.*.erro' => 'required|string',
             'translations.*.description' => 'required|string'
         ]);

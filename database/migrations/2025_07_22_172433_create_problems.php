@@ -15,7 +15,9 @@ return new class extends Migration
         Schema::create('problems', function (Blueprint $table) {
             $table->id();
             $table->enum('language', array_map(fn($i) => $i->value, Programing_language::cases())); 
-            $table->string('code')->unique();//here stay code for solve of problem
+            $table->string('code')->unique();
+            $table->text('erro');
+            $table->string('description');//this field is for explanation your solution//here stay code for solve of problem
             $table->timestamps();
         });
     }

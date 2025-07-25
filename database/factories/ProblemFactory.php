@@ -20,6 +20,8 @@ class ProblemFactory extends Factory
         return [
             'code' => 'System.out.priaaas()',
             'language' => Programing_language::JAVA,
+            'erro' => '404 not found',
+            'description' => 'Não encontro a pagina'
         ];
     }
 }
