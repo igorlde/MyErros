@@ -103,6 +103,8 @@ class ProblemController extends Controller
      */
     public function destroy(string $id)
     {
-        
+        $problem = Problem::findOrFail($id);
+        $problem->delete();
+        return redirect()->route('home')->with('success', 'Delete with success');
     }
 }
