@@ -2,13 +2,13 @@
 @component('components.sidebar')  
 @endcomponent
 @section('content')
-<title>@yield('title', '')</title>
+<title>@yield('title', 'My erros')</title>
 <h2>@yield('title', 'Problems')</h2>
     @if (!empty($problems))
         @foreach ($problems as $p)
-        <div class="user_id">
-            <label for="user-id">User id</label>
-            <td class="user-id">{{$p->user_id}}</td>
+        <div class="user">
+            <label for="user">User</label>
+            <td class="user-id">{{$p->user->name}}</td>
         </div>
             <div class="languge-btn">
                 <label for="code">Code</label><br>
@@ -21,7 +21,7 @@
                 <td class="data-codes">{{$p->erro}}</td><br>
                 <label for="description">description of error</label><br>
                 <td class="data-code">{{$p->description}}</td><br>
-                <a href="{{route('create.solution')}}">Send solution</a>
+                <a href="{{route('create.solution', $p->id)}}">Send solution</a>
             </div>
         @endforeach
     @endif
