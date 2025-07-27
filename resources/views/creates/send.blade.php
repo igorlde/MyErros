@@ -5,12 +5,16 @@
     <form action="{{route('store.solution')}}" method="post">
         @csrf
         @method('POST')
+        <div class="erro-problem">
+            <h4><label for="Erro-by-solve">Erro By solve</label></h4>
+            <td>{{$problem->erro}}</td><br>
+        </div>
         <div class="solution">
-            <label for="erro_code_solution">Erro</label>
+            <label for="erro_code_solution">Erro</label><br>
             <input type="text" name="erro" id="erro" placeholder="Erro who's will solve">
         </div>
         <div class="solution">
-            <label for="language">Language</label>
+            <label for="language">Language</label><br>
             <select name="language" id="languge" class="option-languages">
                  <option value="CPP" class="option-la">C++</option>
                   <option value="JAVA" class="option-la">Java</option>
@@ -29,10 +33,11 @@
             </select>
         </div>
         <div class="solution">
-            <label for="code-solution">Code solution</label>
-            <input type="text" name="code" id="code" placeholder="code-solution">
-            <label for="explanation">Explanation</label>
+            <label for="code-solution">Code solution</label><br>
+            <input type="text" name="code" id="code" placeholder="code-solution"><br>
+            <label for="explanation">Explanation</label><br>
             <input type="text" name="solution" id="solution">
         </div>
+        <button type="submit">Send solution</button>
     </form>
 @endsection
