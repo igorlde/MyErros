@@ -11,13 +11,9 @@ class Problem extends Model
      use HasFactory;
     protected $fillable = ['code'];//this field unique to codes solve
     protected $casts = ['language' => Programing_language::class];//enums of laguage for programing.
-
-    public function translation(){
-        return $this->hasMany(ProblemTranslation::class);
-    }
     
-    public function translati($language){
-        return $this->translation()->where('language', $language)->first();
+    public function user(){
+        return $this->belongsTo(User::class);
     }
     
     public function solution(){
