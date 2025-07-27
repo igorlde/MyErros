@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Programing_language;
+use App\Models\Problem;
 use App\Models\SendSolutions;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Enum;
@@ -20,9 +21,10 @@ class SendSolutionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(int $id)
     {
-        return view('creates.send');
+        $problem = Problem::findOrFail($id);//get id of problem whos will solve.
+        return view('creates.send', ['problem' => $problem]);
     }
 
     /**
