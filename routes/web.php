@@ -27,9 +27,9 @@ Route::put('/update/{id}',
 
 })->name('app.problems');
 
-//group for utility codes
-Route::group(['prefix', 'utility'], function(){
-    Route::get('/solution', 
+
+Route::group(['prefix', 'solution'], function(){
+    Route::get('/solution/{id}', 
     [SendSolutionController::class, 'create'])->name('create.solution');
 
     Route::post('/store/solution', 
