@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\SendSolutionController;
+use App\Http\Controllers\utilityController;
 use Illuminate\Support\Facades\Route;
 
 //route for page home.
@@ -45,3 +46,17 @@ Route::group(['prefix', 'solution'], function(){
     [SendSolutionController::class, 'update'])->name('update.solution');
 
 })->name('app.utility');
+
+//group for utility codes.
+Route::group(['prefix', 'utility'], function(){
+    Route::get('/utility/create',
+    utilityController::class, 'create')->name('utility.create');
+    Route::post('/utility/store',
+    utilityController::class, 'store')->name('utility.store');
+    Route::get('/show/{id}', 
+    utilityController::class, 'show')->name('utility.show');
+    Route::get('/edit/{id}', 
+    utilityController::class, 'edit')->name('utility.edit');
+    Route::put('/utility/update/{id}',
+    utilityController::class, 'update')->name('utility.update');
+})->name('utility');
