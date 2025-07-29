@@ -45,4 +45,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function utility(){
+        return $this->hasMany(utility::class);//a user could had one or many code utilitys
+    }
 }

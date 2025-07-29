@@ -20,6 +20,7 @@ class ProblemController extends Controller
         return view('home', ['problems' => $problems]);
     }
 
+    
     /**
      * Show the form for creating a new resource.
      * is get
@@ -35,18 +36,17 @@ class ProblemController extends Controller
      */
     public function store(Request $request)
     {
-        //'language' => ['required', new Enum(Language::class)],
         $validation = $request->validate([
             'code' => 'required|string|max:255',
             'language' => ['required', new Enum(Programing_language::class)],
             'translations.*.erro' => 'required|string',
             'translations.*.description' => 'required|string'
         ]);
-
         $problem = Problem::create([
             'code' => $validation['code'],
             'language' => $validation['language'],
         ]);
+
         //part of code that check your language speak.
          foreach ($validation['translations'] as $translation) {
         $problem->translations()->create([
