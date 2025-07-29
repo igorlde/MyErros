@@ -8,8 +8,8 @@
         @method('POST')
         @csrf
         <div class="btn-code">
-            <label for="code">Code</label>
-            <input type="text" name="code" id="code" placeholder="code">
+            <label for="code">Code</label><br>
+            <input type="text" name="code" id="code" placeholder="code"><br>
             <label for="language-pr">Language</label>
             <select name="language-programing" id="language-programing" class="option-select">
                   <option value="CPP" class="option-la">C++</option>
@@ -29,10 +29,11 @@
             </select>
         </div>
         <div class="erro">
-            <label for="erro">Error</label>
-            <input type="text" name="erro" id="erro" placeholder="erro">
-            <label for="description">description</label>
-            <input type="text" name="description" id="description" placeholder="description from erro">
+            <label for="erro">Error</label><br>
+            <input type="text" name="erro" id="erro" placeholder="erro"><br>
+            <label for="description">description</label><br>
+            <input type="text" name="description" id="description" placeholder="description from erro"><br>
         </div>
+        <button type="submit">Send your problem</button>
     </form>
 @endsection
