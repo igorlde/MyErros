@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Programing_language;
+use App\Http\Requests\StoreSendSolutionRequest;
+use App\Http\Requests\UpdateSendSolutionRequest;
 use App\Models\Problem;
 use App\Models\SendSolutions;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Enum;
 
 class SendSolutionController extends Controller
 {
@@ -30,17 +29,9 @@ class SendSolutionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSendSolutionRequest $request)
     {
-        $validation = $request->validate([
-            'erro' => 'required|text',
-            'language' => ['required', new Enum(Programing_language::class)],
-            'problem_id' => 'required|BigInteger',
-            'user_id' => 'required|BigInteger',
-            'code_solution' => 'required|text',
-            'explanation' => 'required|string|max:255'
-        ]);
-        SendSolutions::create($validation);
+        SendSolutions::create($request->validate());
         return redirect()->route('home')->with('success', 'Send your solution with success');
     }
 
@@ -56,28 +47,17 @@ class SendSolutionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(SendSolutions $solution)
     {
-        $solution = SendSolutions::findOrFail($id);
         return view('edit.solution', ['solution' => $solution]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSendSolutionRequest $request, SendSolutions $solution)
     {
-        $validation = $request->validate([
-            'erro' => 'required|text',
-            'language' => ['required', new Enum(Programing_language::class)],
-            'problem_id' => 'required|BigInteger',
-            'user_id' => 'required|BigInteger',
-            'code_solution' => 'required|text',
-            'explanation' => 'required|string|max:255'
-
-        ]);
-        $solution = SendSolutions::findOrFail($id);
-        $solution->update($validation);
+        $solution->update($request->validate());
         return redirect()->route('home')->with('success', 'Update svae with sucess');
     }
 

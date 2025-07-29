@@ -1,12 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Enums\Languages;
-use App\Enums\Programing_language;
+use App\Http\Requests\StoreProblemRequest;
+use App\Http\Requests\UpdateProblemRequest;
 use App\Models\Problem;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Enum;
 
 class ProblemController extends Controller
 {
@@ -19,8 +16,6 @@ class ProblemController extends Controller
         $problems = Problem::with('user')->get();
         return view('home', ['problems' => $problems]);
     }
-
-    
     /**
      * Show the form for creating a new resource.
      * is get
@@ -34,27 +29,9 @@ class ProblemController extends Controller
      * Store a newly created resource in storage.
      * is post
      */
-    public function store(Request $request)
+    public function store(StoreProblemRequest $request)
     {
-        $validation = $request->validate([
-            'code' => 'required|string|max:255',
-            'language' => ['required', new Enum(Programing_language::class)],
-            'translations.*.erro' => 'required|string',
-            'translations.*.description' => 'required|string'
-        ]);
-        $problem = Problem::create([
-            'code' => $validation['code'],
-            'language' => $validation['language'],
-        ]);
-
-        //part of code that check your language speak.
-         foreach ($validation['translations'] as $translation) {
-        $problem->translations()->create([
-            'language' => $translation['language'],
-            'erro' => $translation['erro'],
-            'description_erro' => $translation['description_erro'],
-        ]);
-    }
+        Problem::create($request->validate());
         return redirect()->route('home')->with('success', 'Create problem with success');
     }
 
@@ -72,28 +49,19 @@ class ProblemController extends Controller
      * Show the form for editing the specified resource.
      * is get
      */
-    public function edit(string $id)
+    public function edit(Problem $problem)
     {
-        $problem_id = Problem::findOrFail($id);
-        return view('updates.problemUp', ['problem_id' => $problem_id]);
+        return view('updates.problemUp', ['problem' => $problem]);
     }
 
     /**
      * Update the specified resource in storage.
      * is put
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProblemRequest $request, Problem $problem)
     {
-        $validation = $request->validate([
-             'code' => 'required|string|max:255',
-            'language' => ['required', new Enum(Programing_language::class)],
-            'translations' => 'required:array',
-             'translations.*language' => ['required', new Enum(Languages::class)], 
-            'translations.*.erro' => 'required|string',
-            'translations.*.description' => 'required|string'
-        ]);
-        $problem = Problem::findOrFail($id);
-        $problem->update($validation);
+    
+        $problem->update($request->validate());
         return redirect()->route('home')->with('success', 'Update datas you problem with success');
     }
 

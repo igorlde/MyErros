@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUtilityRequest;
+use App\Models\Utility;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class utilityController extends Controller
 {
@@ -11,7 +14,8 @@ class utilityController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Utility::with('user')->get();
+        return view('homes.utilityHome', ['user' => $user]);
     }
 
     /**
@@ -19,15 +23,17 @@ class utilityController extends Controller
      */
     public function create()
     {
-        
+        $utility = Utility::with('user')->get();
+        return view('creates.utility', ['utility' => $utility]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUtilityRequest $request)
     {
-        //
+        Utility::create($request->validate());
+        return redirect()->back()->with('success', 'create datas with success');
     }
 
     /**
@@ -41,17 +47,18 @@ class utilityController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Utility $utility)
     {
-        //
+        return view('updates.utilityUp', ['utility' => $utility]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Utility $utility)
     {
-        //
+        $utility->update($request->validate());
+        return redirect()->back()->with('success', 'update with success');
     }
 
     /**
