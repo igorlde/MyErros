@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('erro', 255);
             $table->enum('language', array_map(fn($i) => $i->value, Programing_language::cases()));
-            $table->binary('print_code');
+            $table->string('print_code');
             $table->text('code');
             $table->string('explanation');
             $table->timestamps();
