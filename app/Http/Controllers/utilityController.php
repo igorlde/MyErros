@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUtilityRequest;
 use App\Models\Utility;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class utilityController extends Controller
 {
@@ -14,8 +13,7 @@ class utilityController extends Controller
      */
     public function index()
     {
-        $user = Utility::with('user')->get();
-        return view('homes.utilityHome', ['user' => $user]);
+        return view('homes.utilityHome');
     }
 
     /**
@@ -23,8 +21,7 @@ class utilityController extends Controller
      */
     public function create()
     {
-        $utility = Utility::with('user')->get();
-        return view('creates.utility', ['utility' => $utility]);
+        return view('creates.utility');
     }
 
     /**

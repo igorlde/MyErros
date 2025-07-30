@@ -14,7 +14,8 @@ return new class extends Migration
     {
         Schema::create('utility_codes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->nullable();//debug test my function while i no implements auth
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('erro', 255);
             $table->enum('language', array_map(fn($i) => $i->value, Programing_language::cases()));
             $table->string('print_code');

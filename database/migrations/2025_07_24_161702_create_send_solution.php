@@ -14,10 +14,11 @@ return new class extends Migration
     {
         Schema::create('send_solutions', function (Blueprint $table) {
             $table->id();
-            $table->text('erro');
             $table->enum('language', array_map(fn($i) => $i->value, Programing_language::cases()));
-            $table->unsignedBigInteger('problem_id')->references('id')->on('problems')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id')->references('id')->on('user')->onDelete('cascade');
+            $table->unsignedBigInteger('problem_id');
+            $table->foreign('problem_id')->references('id')->on('problems')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->nullable();//debug test my function while i no implements auth
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('code_solution');
             $table->string('explanation');
             $table->timestamps();

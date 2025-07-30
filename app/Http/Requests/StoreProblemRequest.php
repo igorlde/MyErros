@@ -13,7 +13,7 @@ class StoreProblemRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,10 +25,9 @@ class StoreProblemRequest extends FormRequest
     {
         return [
             'language' => ['required', new Enum(Programing_language::class)],
-            'user_id' => 'required|BigInteger',
             'code' => 'required|string|max:255',
-            'erro' => 'required|text',
-            'description' => 'required|string|max:255'
+            'erro' => 'required|string|min:10',
+            'description' => 'required|string|max:255',
         ];
     }
 }

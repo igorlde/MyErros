@@ -1,27 +1,37 @@
 @extends('layout.app')
+
 @component('components.sidebar')  
 @endcomponent
+
 @section('content')
-<title>@yield('title', 'My erros')</title>
-<h2>@yield('title', 'Problems')</h2>
+    <h2>@yield('title', 'Problems')</h2>
+
     @if (!empty($problems))
         @foreach ($problems as $p)
-        <div class="user">
-            <label for="user">User</label>
-            <td class="user-id">{{$p->user->name}}</td>
-        </div>
-            <div class="languge-btn">
-                <label for="code">Code</label><br>
-               <td class="data-codes">{{$p->code}}</td><br>
-               <label for="language-code">Language of programing</label><br>
-               <td class="data-codes">{{$p->language}}</td><br>
-            </div>
-             <div class="language-btn">
-                <label for="erro">Erro of the code</label><br>
-                <td class="data-codes">{{$p->erro}}</td><br>
-                <label for="description">description of error</label><br>
-                <td class="data-code">{{$p->description}}</td><br>
-                <a href="{{route('create.solution', $p->id)}}">Send solution</a>
+            <div class="problem-entry">
+                <div class="user">
+                    <label for="user">User:</label>
+                    <span class="user-id">{{ $p->user->name ?? 'Unknown' }}</span>
+                </div>
+
+                <div class="language-info">
+                    <label for="code">Code:</label><br>
+                    <pre class="data-codes">{{ $p->code }}</pre><br>
+
+                    <label for="language-code">Programming Language:</label><br>
+                    <span class="data-codes">{{ $p->language }}</span><br>
+                </div>
+
+                <div class="error-info">
+                    <label for="erro">Error in the code:</label><br>
+                    <span class="data-codes">{{ $p->erro }}</span><br>
+
+                    <label for="description">Description of the error:</label><br>
+                    <span class="data-code">{{ $p->description }}</span><br>
+                </div>
+
+                <a href="{{ route('create.solution', $p->id) }}">Send solution</a>
+                <hr>
             </div>
         @endforeach
     @endif

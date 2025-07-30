@@ -31,7 +31,8 @@ class ProblemController extends Controller
      */
     public function store(StoreProblemRequest $request)
     {
-        Problem::create($request->validate());
+        $data = $request->validated();
+        Problem::create($data);
         return redirect()->route('home')->with('success', 'Create problem with success');
     }
 

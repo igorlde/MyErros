@@ -1,39 +1,38 @@
 @extends('layout.app')
-@section('content')
-@component('components.sidebar')
+
+@component('components.sidebar')  
 @endcomponent
-<title>@yield('title', '')</title>
-<h2>@yield('title', 'Send your problem')</h2>
-    <form action="{{route('store.problem')}}" method="post">
-        @method('POST')
-        @csrf
-        <div class="btn-code">
-            <label for="code">Code</label><br>
-            <input type="text" name="code" id="code" placeholder="code"><br>
-            <label for="language-pr">Language</label>
-            <select name="language-programing" id="language-programing" class="option-select">
-                  <option value="CPP" class="option-la">C++</option>
-                  <option value="JAVA" class="option-la">Java</option>
-                  <option value="ASSEMBLY" class="option-la">Assembly</option>
-                  <option value="GO" class="option-la">GO</option>
-                  <option value="C" class="option-la">C</option>
-                  <option value="PHP" class="option-la">PHP</option>
-                  <option value="LARAVEL" class="option-la">Laravel</option>
-                  <option value="SPRING_BOOT" class="option-la">Springboot</option>
-                  <option value="PASCAL" class="option-la">Pascal</option>
-                  <option value="PYTHON" class="option-la">Python</option>
-                  <option value="JAVA_SCRIPT" class="option-la">javascript</option>
-                  <option value="TYPE_SCRIPT" class="option-la">TypeScript</option>
-                  <option value="SQL" class="option-la">SQL</option>
-                  <option value="OTHERS" class="option-la">others</option>
-            </select>
-        </div>
-        <div class="erro">
-            <label for="erro">Error</label><br>
-            <input type="text" name="erro" id="erro" placeholder="erro"><br>
-            <label for="description">description</label><br>
-            <input type="text" name="description" id="description" placeholder="description from erro"><br>
-        </div>
-        <button type="submit">Send your problem</button>
-    </form>
+
+@section('content')
+@php
+     use App\Enums\Programing_language;
+@endphp
+<form action="{{ route('store.problem') }}" method="post">
+    @csrf
+
+    <div class="btn-code">
+        <label for="code">Code</label><br>
+        <input type="text" name="code" id="code" placeholder="Code" value="{{ old('code') }}"><br>
+
+        <label for="language">Language</label><br>
+        <select name="language" id="language" class="option-select">
+        <option value="">-- Select --</option>
+        @foreach (Programing_language::cases() as $lang)
+        <option value="{{ $lang->value }}" {{ old('language') === $lang->value ? 'selected' : '' }}>
+            {{ ucfirst($lang->label()) }}
+        </option>
+        @endforeach
+</select>
+    </div>
+
+    <div class="erro">
+        <label for="erro">Error</label><br>
+        <input type="text" name="erro" id="erro" placeholder="Error here" value="{{ old('erro') }}"><br>
+
+        <label for="description">Description</label><br>
+        <input type="text" name="description" id="description" placeholder="Description of the error" value="{{ old('description') }}"><br>
+    </div>
+
+    <button type="submit">Send your problem</button>
+</form>
 @endsection
