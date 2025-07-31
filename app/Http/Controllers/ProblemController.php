@@ -32,6 +32,9 @@ class ProblemController extends Controller
     public function store(StoreProblemRequest $request)
     {
         $data = $request->validated();
+        $data['print_code'] = $request->file('print_code')->store('print_code', 'public');
+        $data['user_id'] = 1;
+       // dd($data);
         Problem::create($data);
         return redirect()->route('home')->with('success', 'Create problem with success');
     }

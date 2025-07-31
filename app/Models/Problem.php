@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Problem extends Model
 {
      use HasFactory;
-    protected $fillable = ['code', 'erro', 'description', 'language'];//this field unique to codes solve
+    protected $fillable = ['code', 'erro', 'description', 'language', 'print_code'];//this field unique to codes solve
     protected $casts = ['language' => Programing_language::class];//enums of laguage for programing.
     
     public function user(){

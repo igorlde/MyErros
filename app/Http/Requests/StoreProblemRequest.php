@@ -25,9 +25,10 @@ class StoreProblemRequest extends FormRequest
     {
         return [
             'language' => ['required', new Enum(Programing_language::class)],
-            'code' => 'required|string|max:255',
-            'erro' => 'required|string|min:10',
-            'description' => 'required|string|max:255',
+            'erro' => ['required','string', 'min:10'],
+            'code' => ['required', 'string'],
+            'print_code' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:10240'], //10mb
+            'description' => ['required', 'string', 'max:255'],
         ];
     }
 }
