@@ -25,7 +25,7 @@
         </div>
         <div class="solution">
             <label for="code">Code solution</label><br>
-            <input type="text" name="code" id="code" placeholder="code-solution" value="{{old('code')}}"><br>
+            <textarea name="code" id="code" placeholder="Code" rows="10">{{old('code')}}</textarea><br>
             <label for="solution">Explanation</label><br>
             <input type="text" name="solution" id="solution" value="{{old('solution')}}">
         </div>

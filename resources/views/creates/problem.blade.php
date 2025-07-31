@@ -7,12 +7,12 @@
 @php
      use App\Enums\Programing_language;
 @endphp
-<form action="{{ route('store.problem') }}" method="post">
+<form action="{{ route('store.problem') }}" method="post" enctype="multipart/form-data">
     @csrf
 
     <div class="btn-code">
         <label for="code">Code</label><br>
-        <input type="text" name="code" id="code" placeholder="Code" value="{{ old('code') }}"><br>
+        <textarea name="code" id="code" placeholder="Code" rows="10">{{ old('code') }}</textarea><br>
 
         <label for="language">Language</label><br>
         <select name="language" id="language" class="option-select">
@@ -31,6 +31,10 @@
 
         <label for="description">Description</label><br>
         <input type="text" name="description" id="description" placeholder="Description of the error" value="{{ old('description') }}"><br>
+    </div>
+    <div class="print-code">
+        <label for="print_code">Print code</label><br>
+        <input type="file" name="print_code" id="print_code" accept="image/*"><br>
     </div>
 
     <button type="submit">Send your problem</button>
