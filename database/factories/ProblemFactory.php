@@ -18,10 +18,17 @@ class ProblemFactory extends Factory
     public function definition(): array
     {
         return [
-            'code' => 'System.out.priaaas()',
+            
             'language' => Programing_language::JAVA,
             'user_id' => 1,
-            'erro' => '404 not found',
+            'erro' => '
+            int i = 0; 
+            while (i < 5){   
+                System.out.println(i);
+              i++; 
+            }',
+            'code' => '.png',
+            'print_code' => 'teste_imagem',
             'description' => 'Não encontro a pagina'
         ];
     }
