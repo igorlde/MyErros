@@ -9,10 +9,11 @@ enum Programing_language:string
     //'spring boot', 'c', 'pascal','assembly', 'javascript', 'typescript', 'outros'
     
             
-    case CPP = 'c++';
-    case JAVA = 'java';
-    case PHP = 'php';
+    case CPP = 'C++';
+    case JAVA = 'JAVA';
+    case PHP = 'PHP';
     case GO = 'go';
+    case SQL = 'SQL';
     case PYTHON = 'python';
     case LARAVEL = 'laravel';
     case SPRING_BOOT = 'spring boot';
@@ -25,10 +26,11 @@ enum Programing_language:string
     
     public function label():string{
         return match($this){
-            self::CPP => 'c++',
-            self::JAVA => 'java',
-            self::PHP => 'php',
+            self::CPP => 'C++',
+            self::JAVA => 'JAVA',
+            self::PHP => 'PHP',
             self::GO => 'go',
+            self::SQL => 'SQL',
             self::PYTHON => 'python',
             self::LARAVEL => 'laravel',
             self::SPRING_BOOT => 'spring boot',
