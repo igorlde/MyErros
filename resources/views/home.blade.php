@@ -31,7 +31,7 @@
                 </div>
                 <div class="error-info">
                     <label for="description">Description of the error:</label><br>
-                    <span class="data-code">{{ $p->description }}</span><br>
+                   <div class="data-code">{!! $p->description !!}</div>
                 </div>
 
                 <a href="{{ route('create.solution', $p->id) }}">Send solution</a>

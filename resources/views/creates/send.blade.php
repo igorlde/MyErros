@@ -2,6 +2,7 @@
 
 @component('components.sidebar')
 @endcomponent
+
 @section('content')
 @php
     use App\Enums\Programing_language;
@@ -21,14 +22,33 @@
                     {{ ucfirst($lang->label()) }}
                 </option>
                 @endforeach
-</select>
+             </select>
         </div>
         <div class="solution">
             <label for="code">Code solution</label><br>
             <textarea name="code" id="code" placeholder="Code" rows="10">{{old('code')}}</textarea><br>
             <label for="solution">Explanation</label><br>
-            <input type="text" name="solution" id="solution" value="{{old('solution')}}">
+            <div id="editor" style="height: 200px;">{!! old('solution') !!}</div>
+            <input type="hidden" name="solution" id="solution">
         </div>
         <button type="submit">Send solution</button>
     </form>
+    @endsection
+    @section('scripts')
+    <script>
+    var quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+
+    var form = document.querySelector('form');
+    form.onsubmit = function () {
+        const content = quill.root.innerHTML.trim();
+        if (content === '<p><br></p>') {
+            alert('A explicação não pode estar vazia!');
+           return false;
+        }
+        document.querySelector('input[name=solution]').value = quill.root.innerHTML;
+    };
+    </script>
+
 @endsection

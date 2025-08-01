@@ -30,7 +30,8 @@
         <input type="text" name="erro" id="erro" placeholder="Error here" value="{{ old('erro') }}"><br>
 
         <label for="description">Description</label><br>
-        <input type="text" name="description" id="description" placeholder="Description of the error" value="{{ old('description') }}"><br>
+        <div id="editor" style="height: 200px;">{!! old('description') !!}</div>
+        <input type="hidden" name="description" id="description" placeholder="Description of the error" value="{{ old('description') }}"><br>
     </div>
     <div class="print-code">
         <label for="print_code">Print code</label><br>
@@ -39,4 +40,22 @@
 
     <button type="submit">Send your problem</button>
 </form>
+@endsection
+@section('scripts')
+<script>
+    var quill = new Quill('#editor',{
+        theme: 'snow'
+    });
+
+    var form = document.querySelector('form');
+    form.onsubmit = function(){
+        const content = quill.root.innerHTML.trim();
+        if(content === '<p><br></p>'){
+            alert('the description are empty');
+            return false;
+        }
+        document.querySelector('input[name=description]').value = quill.root.innerHTML;
+    };
+</script>
+    
 @endsection
